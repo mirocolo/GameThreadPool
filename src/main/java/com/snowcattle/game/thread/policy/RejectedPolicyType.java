@@ -42,6 +42,7 @@ public enum RejectedPolicyType {
         throw new IllegalArgumentException("Mismatched type with value=" + value);
     }
 
+    @Override
     public String toString() {
         return value;
     }

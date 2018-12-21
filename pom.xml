@@ -4,16 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>www.snowcattle.com</groupId>
-    <artifactId>game-thread</artifactId>
+    <groupId>com.github.jwpttcg66</groupId>
+    <artifactId>GameThreadPool</artifactId>
     <version>1.1.5-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+    <parent>
+        <groupId>jar-pom</groupId>
+        <artifactId>jar-pom</artifactId>
+        <version>0.0.4-SNAPSHOT</version>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +59,7 @@
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>game-expression</artifactId>
-            <version>1.1</version>
+            <version>1.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

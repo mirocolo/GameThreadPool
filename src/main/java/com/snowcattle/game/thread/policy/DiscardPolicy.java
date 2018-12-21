@@ -1,6 +1,7 @@
 package com.snowcattle.game.thread.policy;
 
 import com.snowcattle.game.common.constants.Loggers;
+
 import org.slf4j.Logger;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,6 +22,7 @@ public class DiscardPolicy extends ThreadPoolExecutor.DiscardPolicy {
         this.threadName = threadName;
     }
 
+    @Override
     public void rejectedExecution(Runnable runnable, ThreadPoolExecutor executor) {
         if (threadName != null) {
             logger.error("hread pool [{}] is exhausted, executor={}", threadName, executor.toString());

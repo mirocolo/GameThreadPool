@@ -28,7 +28,8 @@ public enum BlockingQueueType {
         throw new IllegalArgumentException("Mismatched type with value=" + value);
     }
 
-    public String toString() {
-        return value;
-    }
+	@Override
+	public String toString() {
+		return value;
+	}
 }

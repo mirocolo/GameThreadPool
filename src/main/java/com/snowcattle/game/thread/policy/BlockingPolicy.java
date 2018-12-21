@@ -1,6 +1,7 @@
 package com.snowcattle.game.thread.policy;
 
 import com.snowcattle.game.common.constants.Loggers;
+
 import org.slf4j.Logger;
 
 import java.util.concurrent.RejectedExecutionHandler;
@@ -24,16 +25,17 @@ public class BlockingPolicy implements RejectedExecutionHandler {
         this.threadName = threadName;
     }
 
-    public void rejectedExecution(Runnable runnable, ThreadPoolExecutor executor) {
-        if (threadName != null) {
-            logger.error("Thread pool [{}] is exhausted, executor={}", threadName, executor.toString());
-        }
+	@Override
+	public void rejectedExecution(Runnable runnable, ThreadPoolExecutor executor) {
+		if (threadName != null) {
+			logger.error("Thread pool [{}] is exhausted, executor={}", threadName, executor.toString());
+		}
 
-        if (!executor.isShutdown()) {
-            try {
-                executor.getQueue().put(runnable);
-            } catch (InterruptedException e) {
-            }
-        }
-    }
+		if (!executor.isShutdown()) {
+			try {
+				executor.getQueue().put(runnable);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
 }

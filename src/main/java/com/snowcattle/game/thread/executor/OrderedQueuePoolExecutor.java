@@ -1,14 +1,18 @@
 package com.snowcattle.game.thread.executor;
 
 import com.snowcattle.game.common.constants.Loggers;
-import com.snowcattle.game.common.enums.BlockingQueueType;
 import com.snowcattle.game.thread.ThreadNameFactory;
 import com.snowcattle.game.thread.worker.AbstractWork;
 import com.snowcattle.game.thread.worker.OrderedQueuePool;
 import com.snowcattle.game.thread.worker.TasksQueue;
+
 import org.slf4j.Logger;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jiangwenping on 17/3/10.
@@ -58,7 +62,7 @@ public class OrderedQueuePoolExecutor extends ThreadPoolExecutor {
      * 增加执行任务
      *
      * @param key
-     * @param value
+     * @param task
      * @return
      */
     public boolean addTask(long key, AbstractWork task) {
@@ -68,9 +72,6 @@ public class OrderedQueuePoolExecutor extends ThreadPoolExecutor {
         synchronized (queue) {
             if (maxTaskQueueSize > 0) {
                 if (queue.size() > maxTaskQueueSize) {
-//                    logger.error("队列" + threadNameFactory.getNamePrefix() + "(" + key + ")" + "抛弃指令!");
-//                    queue.clear();
-                    //不可以清空队列里的任务
                     if (logger.isWarnEnabled()) {
                         logger.warn("队列" + threadNameFactory.getNamePrefix() + "(" + key + ")" + "超过最大队列大小设置!");
                     }

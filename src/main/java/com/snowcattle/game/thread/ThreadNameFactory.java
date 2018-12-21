@@ -27,12 +27,12 @@ public class ThreadNameFactory implements ThreadFactory{
         this.daemon = daemon;
     }
 
-    public Thread newThread(Runnable r)
-    {
+    @Override
+    public Thread newThread(Runnable r) {
         Thread t = new Thread(group, r, namePrefix
                 + threadNumber.getAndIncrement(), 0);
         if(daemon) {
-           t.setDaemon(daemon);
+            t.setDaemon(true);
         }else{
             if (t.isDaemon())
                 t.setDaemon(false);
